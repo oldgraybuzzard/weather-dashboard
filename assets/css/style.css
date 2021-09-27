@@ -1,0 +1,28 @@
+* {
+    margin: 15px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #0652DD;
+    --secondary-color: #808e9b;
+    --tertiary-color: #fd9644;
+    --primary-text-color: #ffffff;
+    --secondary-text-color: #1e272e;
+}
+
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    line-height: 1;
+}
+
+
+header {
+    background-color:var(--primary-color);
+}
+header h1 {
+    color: var(--primary-text-color);
+}
