@@ -30,3 +30,7 @@ hav h1 {
 hr {
     background-color: var(--primary-color);
 }
+h3, label, .btn {
+    color: var(--secondary-text-color);
+    font-size: 18px;
+}

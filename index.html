@@ -22,66 +22,119 @@
         </header> 
     </nav>
     
-    <div class="col-12 col-lg-3 bg-dark text-light sticky-top d-flex flex-column p-4 p-lg-3">
-    <header>
-        <div class="row">
-            <h3>Search for a place</h3>
-            <div class="col-2">
-                <div class="row">
-                    <div class="mb-2">
-                        <label for="cityFormControlTextarea" class="city-form-label display-7">Enter a City</label>
-                        <input class="form-control" type="text" placeholder="Orlando" aria-label="city-input">
+    <div class="row min-vh-100 no-gutters">
+        <header class="col-12 col-lg-2 text-light sticky-top d-flex flex-column p-4 p-lg-3">
+            <div class="row">
+                <h3 class="display-6">Search a location</h3>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="mb-2">
+                            <label for="cityFormControlTextarea" class="city-form-label display-7">Enter a City</label>
+                            <input class="form-control" type="text" placeholder="Orlando" aria-label="city-input">
+                        </div>
                     </div>
-                </div>
-            
-                <div class="row">
-                    <div class="mb-2">
-                        <label for="stateFormControlTextarea" class="state-form-label display-7">Enter a State</label>
-                        <input class="form-control" type="text" placeholder="FL" aria-label="state-input">
-                    </div>
-                </div>
                 
-                <div class="row">
-                    <div class="mb-2">
-                        <label for="countryFormControlTextarea" class="country-form-label display-7">Enter a Country</label>
-                        <input class="form-control" type="text" placeholder="USA" aria-label="country-input">
+                    <div class="row">
+                        <div class="mb-2">
+                            <label for="stateFormControlTextarea" class="state-form-label display-7">Enter a State</label>
+                            <input class="form-control" type="text" placeholder="FL" aria-label="state-input">
+                        </div>
                     </div>
-                </div>
-                <div class="d-grid">
-                    <div class="mb-2">
-                        <button  id="searchBtn" class="btn btn-primary btn-lg" type="button">Search</button>
+                    
+                    <div class="row">
+                        <div class="mb-2">
+                            <label for="countryFormControlTextarea" class="country-form-label displ-7">Enter a Country</label>
+                            <input class="form-control" type="text" placeholder="USA" aria-label="country-input">
+                        </div>
                     </div>
-                    <hr size="5" noshade>
+                    <div class="row">
+                        <div class="mb-2">
+                            <button  type="button" class="btn btn-primary btn-lg" >Search</button>
+                        </div>
+                        <hr size="5" noshade>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="btn-group-vertical gap-3 col-2">
-            <button type="button" class="btn btn-secondary btn-lg">Atlanta</button>
-            <button type="button" class="btn btn-secondary btn-lg">Austin</button>
-            <button type="button" class="btn btn-secondary btn-lg">Boston</button>
-            <button type="button" class="btn btn-secondary btn-lg">Chicago</button>
-            <button type="button" class="btn btn-secondary btn-lg">Dallas</button>
-            <button type="button" class="btn btn-secondary btn-lg">Denver</button>
-            <button type="button" class="btn btn-secondary btn-lg">Miami</button>
-            <button type="button" class="btn btn-secondary btn-lg">New York</button>
-            <button type="button" class="btn btn-secondary btn-lg">Orlando</button>
-            <button type="button" class="btn btn-secondary btn-lg">San Diego</button>
-            <button type="button" class="btn btn-secondary btn-lg">Seattle</button>
-        </div>
-    </header>
-</div>
+                
+            <div class="btn-group-vertical gap-3 col-12">
+                <button type="button" class="btn btn-secondary btn-lg">Atlanta</button>
+                <button type="button" class="btn btn-secondary btn-lg">Austin</button>
+                <button type="button" class="btn btn-secondary btn-lg">Boston</button>
+                <button type="button" class="btn btn-secondary btn-lg">Chicago</button>
+                <button type="button" class="btn btn-secondary btn-lg">Dallas</button>
+                <button type="button" class="btn btn-secondary btn-lg">Denver</button>
+                <button type="button" class="btn btn-secondary btn-lg">Miami</button>
+                <button type="button" class="btn btn-secondary btn-lg">New York</button>
+                <button type="button" class="btn btn-secondary btn-lg">Orlando</button>
+                <button type="button" class="btn btn-secondary btn-lg">San Diego</button>
+                <button type="button" class="btn btn-secondary btn-lg">Seattle</button>
+            </div>
+        </header>
 
-    <main class="col-12 col-lg-9 d-flex flex-column">
-        <div class="card bg-dark text-white">
-            <img src="..." class="card-img" alt="...">
-            <div class="card-img-overlay">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text">Last updated 3 mins ago</p>
+
+        <main class="col-12 col-lg-9 d-flex flex-column">
+            <div class="row-justify-content-around">
+                <div class="card mb-3 current-city">
+                    <img src="..." class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card title current-city">Lorem</h5>
+                      </div>
+                </div>
             </div>
-          </div>
-    </main>
+            <div class="card-group five-day">
+                <div class="col-12 col-md-6 col-xl-2 mb-2">
+                    <div class="card">
+                        <h4 class="card-header bg-secondary text-light day-one"></h4>
+                        <img src="" alt="">
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-2 mb-2">
+                    <div class="card">
+                        <h4 class="card-header bg-secondary text-light day-two"></h4>
+                        <img src="" alt="">
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-2 mb-2">
+                    <div class="card">
+                        <h4 class="card-header bg-secondary text-light day-three"></h4>
+                        <img src="" alt="">
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>  
+                <div class="col-12 col-md-6 col-xl-2 mb-2">
+                    <div class="card">
+                        <h4 class="card-header bg-secondary text-light day-four"></h4>
+                        <img src="" alt="">
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-2 mb-2">
+                    <div class="card">
+                        <h4 class="card-header bg-secondary text-light day-five"></h4>
+                        <img src="" alt="">
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div> 
+                    
+    
+
+
+                
+            </div>
+        </main>
+    </div>
 
     <script type="text/javascript" src="./assets/js/config.js"></script>
     <script src="./assets/js/script.js"></script>
