@@ -1,5 +1,5 @@
 * {
-    margin: 5px;
+    margin: 2px;
    
     box-sizing: border-box;
 }
@@ -20,9 +20,13 @@ body {
 }
 
 
-header {
+nav {
     background-color:var(--primary-color);
 }
-header h1 {
+hav h1 {
     color: var(--primary-text-color);
+}
+
+hr {
+    background-color: var(--primary-color);
 }

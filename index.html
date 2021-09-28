@@ -15,49 +15,77 @@
     <title>One Day Weather</title>
 </head>
 <body>
-    <div class="row">
-        <header>
-        <h1 class="display-1 text-center">One Day Weather</h1>
-        </header>
-    </div>
-    <div class="col-2">
-        <div class="row">
-            <div class="mb-2">
-                <label for="cityFormControlTextarea" class="city-form-label display-7">Enter a City</label>
-                <textarea class="form-control" id="city" rows="2"></textarea>
-            </div>
-        </div>
     
+    <nav>
+        <header>
+            <h1 class="display-1 text-center">One Day Weather</h1>
+        </header> 
+    </nav>
+    
+    <div class="col-12 col-lg-3 bg-dark text-light sticky-top d-flex flex-column p-4 p-lg-3">
+    <header>
         <div class="row">
-            <div class="mb-2">
-                <label for="stateFormControlTextarea" class="state-form-label display-7">Enter a State</label>
-                <textarea class="form-control" id="city" rows="2"></textarea>
+            <h3>Search for a place</h3>
+            <div class="col-2">
+                <div class="row">
+                    <div class="mb-2">
+                        <label for="cityFormControlTextarea" class="city-form-label display-7">Enter a City</label>
+                        <input class="form-control" type="text" placeholder="Orlando" aria-label="city-input">
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="mb-2">
+                        <label for="stateFormControlTextarea" class="state-form-label display-7">Enter a State</label>
+                        <input class="form-control" type="text" placeholder="FL" aria-label="state-input">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="mb-2">
+                        <label for="countryFormControlTextarea" class="country-form-label display-7">Enter a Country</label>
+                        <input class="form-control" type="text" placeholder="USA" aria-label="country-input">
+                    </div>
+                </div>
+                <div class="d-grid">
+                    <div class="mb-2">
+                        <button  id="searchBtn" class="btn btn-primary btn-lg" type="button">Search</button>
+                    </div>
+                    <hr size="5" noshade>
+                </div>
             </div>
         </div>
         
-        <div class="row">
-            <div class="mb-2">
-                <label for="countryFormControlTextarea" class="country-form-label display-7">Enter a Country</label>
-                <textarea class="form-control" id="city" rows="2"></textarea>
-            </div>
+        <div class="btn-group-vertical gap-3 col-2">
+            <button type="button" class="btn btn-secondary btn-lg">Atlanta</button>
+            <button type="button" class="btn btn-secondary btn-lg">Austin</button>
+            <button type="button" class="btn btn-secondary btn-lg">Boston</button>
+            <button type="button" class="btn btn-secondary btn-lg">Chicago</button>
+            <button type="button" class="btn btn-secondary btn-lg">Dallas</button>
+            <button type="button" class="btn btn-secondary btn-lg">Denver</button>
+            <button type="button" class="btn btn-secondary btn-lg">Miami</button>
+            <button type="button" class="btn btn-secondary btn-lg">New York</button>
+            <button type="button" class="btn btn-secondary btn-lg">Orlando</button>
+            <button type="button" class="btn btn-secondary btn-lg">San Diego</button>
+            <button type="button" class="btn btn-secondary btn-lg">Seattle</button>
         </div>
+    </header>
+</div>
 
-
-
-    </div>
-    <div class="col-8"></div>
-   
-
-
+    <main class="col-12 col-lg-9 d-flex flex-column">
+        <div class="card bg-dark text-white">
+            <img src="..." class="card-img" alt="...">
+            <div class="card-img-overlay">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text">Last updated 3 mins ago</p>
+            </div>
+          </div>
+    </main>
 
     <script type="text/javascript" src="./assets/js/config.js"></script>
     <script src="./assets/js/script.js"></script>
-   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
-<footer>
-    <p>
-        &copy; Kendall Felder
-    </p>
-</footer>
+
 </html>
