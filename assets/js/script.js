@@ -17,8 +17,6 @@ var todayweatherEl = document.getElementById("today-weather");
 let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 var token = config.apiToken;
 
-
-
 //Fetch to OpenWeather
 function getWeather(cityName) {
     // Execute a current weather get request from open weather api
@@ -139,18 +137,3 @@ function getWeather(cityName) {
     if (searchHistory.length > 0) {
     getWeather(searchHistory[searchHistory.length - 1]);
     }
-
-
-    
-
-// Search by city, state, country and search button
-// function cityWeather(city)
-
-
-// Buttons for quick searches of cities
-
-
-// Display area of city under search
-
-
-// Five day weather preview
