@@ -1,33 +1,65 @@
+// current day and time
+$("#currentDay").text(dayjs().format("dddd, MMMM D YYYY"));
+$("#currentTime").text(dayjs().format('HH : mm A'));
+
 // Variables Section
-var cityNameEl = "Sorrento";
-var stateCodeEl = document.getElementById("enter-state");
-var countryEl = document.getElementById("enter-country");
-var searchEl = document.getElementById("search-button");
-var clearEl = document.getElementById("clear-history");
-var nameEl = document.getElementById("city-name");
-var currentPicEl = document.getElementById("current-pic");
-var currentTempEl = document.getElementById("temperature");
-var currentHumidityEl = document.getElementById("humidity");
-var currentWindEl = document.getElementById("wind-speed");
-var currentUVEl = document.getElementById("UV-index");
-var historyEl = document.getElementById("history");
-var fivedayEl = document.getElementById("fiveday-header");
-var todayweatherEl = document.getElementById("today-weather");
-let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 var token = config.apiToken;
+var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
+const apiCityURL = "&appid=" + token
+var cityNameEl = document.getElementById("enter-city");
+var searchCityEl = document.querySelector("#search-button");
+const searchEl = document.getElementById("search-button");
+let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
+var historyEl = document.getElementById("history");
 
-//Fetch to OpenWeather
+// search button function
+searchEl.addEventListener("click", function () {
+    const searchTerm = cityNameEl.value.trim();
+    // getWeather(searchTerm);
+    searchHistory.push(searchTerm);
+    localStorage.setItem("city searches", JSON.stringify(searchHistory));
+    // renderSearchHistory();
+})
 
-// Execute a current weather get request from open weather api
-var getCityWeather = function(getCity) {
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityNameEl + "," + stateCodeEl + "," + countryEl + "&appid=" + token;
-    fetch(apiUrl).then(function(response){
-        response.json().then(function(data) {
-             console.log(data);
+//display search history
+displaySearchHistory();
+    function displaySearchHistory(){
+        historyEl.innerHTML = "";
+        for (let i = 0; i < searchHistory.length; i++) {
+            const historyList = document.createElement("history");
+                historyList.setAttribute("type", "text");
+                historyList.setAttribute("value", searchHistory[i]);
+                historyItem.setAttribute("readonly", true);
+                historyItem.setAttribute("class", "form-control d-block bg-white");
+            }
+            historyEl.append();
+        }
+
+
+
+
+//fetch city weather
+var getCityWeather = function(){
+    let cityNameUrl = cityNameEl;
+        fetch(apiUrl + cityNameUrl + apiCityURL).then(function(response){
+        response.json().then(function(data){
+            console.log(data);
         })
-       
-    });
-
+    })
 }
+
+
+// local storage
+function citySearchList(){
+    if (searchHistory === -1) {
+        console.log("need more");
+    }
+  localStorage.setItem("city", JSON.stringify(cityNameEl));  
+}
+
+
+//searchhistory
+searchHistory =[];
+
 
 getCityWeather();
