@@ -29,10 +29,9 @@ displaySearchHistory();
             const historyList = document.createElement("history");
                 historyList.setAttribute("type", "text");
                 historyList.setAttribute("value", searchHistory[i]);
-                historyItem.setAttribute("readonly", true);
-                historyItem.setAttribute("class", "form-control d-block bg-white");
+                khistoryList.setAttribute("class", "form-control d-block bg-white");
             }
-            historyEl.append();
+            historyEl.append(history);
         }
 
 
