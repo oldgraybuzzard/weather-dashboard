@@ -65,4 +65,15 @@ var getCityWeather = function(){
         })
     }
 
+    function getCurrentConditions(response) {
+        // get the temperature and convert to fahrenheit
+        let tempF = (response.main.temp - 273.15) * 1.8 + 32;
+        tempF = Math.floor(tempF);
+        // pulling lon and lat for the UVIndex
+        var lon = response.coord.lon;
+        var lat = response.coord.lat;
+        $("#today-weather").empty();
+
+
+
 getCityWeather();
