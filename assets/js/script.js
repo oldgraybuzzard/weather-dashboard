@@ -113,16 +113,15 @@ $("#search-button").on("click", function () {
           .addClass("badge mt-auto")
           .text("UV Index: " + uvFinal);
         $("#current-city-weather").append(UVbadge);
-        // then style uvFinal button with below
-        if (uvFinal < 4) {
-          UVbadge.addClass("badge-pill badge-success");
-        } else if (uvFinal < 8) {
-          UVbadge.addClass("badge-pill badge-warning");
-        } else if (uvFinal < 12) {
-          UVbadge.addClass("badge-pill badge-danger");
-        } else {
-          UVbadge.addClass("badge-pill badge-dark");
-        }
+                if (uvFinal < 4) {
+                      UVbadge.addClass("badge bg-success");
+                    } else if (uvFinal < 8) {
+                      UVbadge.addClass("badge bg-warning");
+                    } else if (uvFinal < 12) {
+                      UVbadge.addClass("badge bg-danger");
+                    } else {
+                      UVbadge.addClass("badge bg-dark");
+                    }
       });
     }
   }
@@ -148,7 +147,7 @@ $("#search-button").on("click", function () {
           const card = $("<div>").addClass(
             "card col-md-2 ml-4 mb-4 text-black"
           );
-          const cardBody = $("<div>").addClass("card-body p-3 forecastBody");
+          const cardBody = $("<div>").addClass("card-body p-3 forecastBody bg-secondary");
           const cityDate = $("<h6>")
             .addClass("card-title")
             .text(dayjs(results[i].dt_txt).format("MM/DD/YYYY"));
