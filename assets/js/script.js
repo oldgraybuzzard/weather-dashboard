@@ -67,18 +67,23 @@ $("#search-button").on("click", function () {
   function getCurrentConditions(response) {
     var tempF = (response.main.temp - 273.15) * 1.8 + 32;
       tempF = Math.floor(tempF);
+    var feelLikeTempF = (response.main.feels_like - 273.12) * 1.8 + 32;
+        feelLikeTempF = Math.floor(feelLikeTempF);
     var lon = response.coord.lon;
     var lat = response.coord.lat;
     $("#current-city-weather").empty();
         const card = $("<div>").addClass("card");
         const cardBody = $("<div>").addClass("card-body pb-0 pl-2");
-        const city = $("<h4>").addClass("card-title").text(response.name);
+        const city = $("<h4>").addClass("card-title fw-bold").text(response.name);
         const cityDate = $("<h6>")
           .addClass("card-title")
           .text(date.toLocaleDateString("en-US"));
         const temperature = $("<p>")
           .addClass("card-text current-temp")
           .text("Temperature: " + tempF + " °F");
+          const feelLikeTemperature = $("<p>")
+          .addClass("card-text current-feel-like-temp")
+          .text("Feel Like Temperature: " + feelLikeTempF + " °F");
         const humidity = $("<p>")
           .addClass("card-text current-humidity")
           .text("Humidity: " + response.main.humidity + "%");
@@ -95,7 +100,7 @@ $("#search-button").on("click", function () {
 
   // add to page
     city.append(cityDate, image);
-    cardBody.append(city, temperature, humidity, wind, UVIndextxt);
+    cardBody.append(city, temperature, feelLikeTemperature, humidity, wind, UVIndextxt);
     card.append(cardBody);
     $("#current-city-weather").append(card);
     uvIndex(lon, lat);
@@ -135,6 +140,7 @@ $("#search-button").on("click", function () {
       $("#five-day-forecast-title").addClass("mt-3 mb-3 ml-2 fw-bold text-decoration-underline").text("5 Day Outlook:");
       let results = response.list;
       console.log(response.list);
+    
 
       for (let i = 0; i < results.length; i++) {
         let day = Number(results[i].dt_txt.split("-")[2].split(" ")[0]);
@@ -154,11 +160,17 @@ $("#search-button").on("click", function () {
           const temperature = $("<p>")
             .addClass("card-text forecastTemp")
             .text("Temperature: " + tempF + " °F");
+          const forecastWind = $("<p>")
+            .addClass("card-text forecastWind")
+            .text("Wind Speed: " + results[i].wind.speed + " MPH");
           const humidity = $("<p>")
             .addClass("card-text forecastHumidity")
             .text("Humidity: " + results[i].main.humidity + "%");
+          const forecastPressure = $("<p>")
+            .addClass("card-text forecastPressure")
+            .text("Pressure: " + results[i].main.pressure + " mBar");
           const image = $("<img>").attr("src", "https://openweathermap.org/img/w/" + results[i].weather[0].icon + ".png");
-          cardBody.append(cityDate, image, temperature, humidity);
+          cardBody.append(cityDate, image, temperature, forecastWind, humidity, forecastPressure);
           card.append(cardBody);
           $("#five-day-forecast").append(card);
         }
