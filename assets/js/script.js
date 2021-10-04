@@ -8,53 +8,49 @@ let date = new Date();
 // Variables Section
 var token = "&appid=" + config.apiToken;
 
+
+
+// display search history
+searchHistory();
+  function searchHistory() {
+    $("#list-of-cities").html("");
+    var cities = JSON.parse(localStorage.getItem("cities")) || [];
+      for (var i = 0; i < cities.length; i++)
+      $(".list").append('<li class="list-item">' + cities[i] + "</li>");
+    $(".list-item").on("click", function () {
+      city = $(this).text();
+      $("#enter-city").val(city);
+      $("#search-button").click();
+    });
+}
+
+// localStorage
+function listOfCities() {
+  var cities = JSON.parse(localStorage.getItem("cities")) || [];
+    if (cities.indexOf(city) === -1) {
+      cities.push(city);
+    }
+    localStorage.setItem("cities", JSON.stringify(cities));
+    searchHistory();
+}
+
+// Clear History button
+$("#clear-history").on("click", function () {
+    localStorage.clear();
+    location.reload();
+})
+
+// search for a city
+$("#search-button").on("click", function () {
+    city = $("#enter-city").val().trim();
+      $("#enter-city").val("");
+      
 $("#enter-city").keypress(function(event) {
-  // can press the enter key
   if (event.keyCode === 13) {
     event.preventDefault();
     $("#search-button").click();
   }
 });
-
-// populates history on page
-listCities();
-function listCities() {
-  $("#cityList").html("");
-  var cities = JSON.parse(localStorage.getItem("cities")) || [];
-  console.log(cities);
-  for (var i = 0; i < cities.length; i++)
-    $(".list").append('<li class="list-item">' + cities[i] + "</li>");
-  // sets on click for the list of cities in the history list
-  $(".list-item").on("click", function () {
-    city = $(this).text();
-    $("#enter-city").val(city);
-    $("#search-button").click();
-  });
-}
-// localStorage
-function listOfCities() {
-  var cities = JSON.parse(localStorage.getItem("cities")) || [];
-  if (cities.indexOf(city) === -1) {
-    cities.push(city);
-    console.log(cities);
-  }
-  localStorage.setItem("city list", JSON.stringify(cities));
-  listCities();
-}
-
-// Clear History button
-   $("#clear-history").on("click", function () {
-    localStorage.clear();
-    location.reload();
-    })
-
-// searching a city
-$("#search-button").on("click", function () {
-  // get the value of the input from user
-  city = $("#enter-city").val();
-
-  // clear input box
-  $("#enter-city").val("");
 
   // full url to call api
   const queryUrl =
@@ -66,56 +62,47 @@ $("#search-button").on("click", function () {
     getCurrentConditions(response);
     getCurrentForecast(response);
     listOfCities();
-  });
+    });
 
   function getCurrentConditions(response) {
-    // get the temperature and convert to fahrenheit
-    let tempF = (response.main.temp - 273.15) * 1.8 + 32;
-    tempF = Math.floor(tempF);
-    // pulling lon and lat for the UVIndex
+    var tempF = (response.main.temp - 273.15) * 1.8 + 32;
+      tempF = Math.floor(tempF);
     var lon = response.coord.lon;
     var lat = response.coord.lat;
     $("#current-city-weather").empty();
-
-    // get and set the content in card
-    const card = $("<div>").addClass("card");
-    const cardBody = $("<div>").addClass("card-body pb-0 pl-2");
-    const city = $("<h4>").addClass("card-title").text(response.name);
-    const cityDate = $("<h6>")
-      .addClass("card-title")
-      .text(date.toLocaleDateString("en-US"));
-    const temperature = $("<p>")
-      .addClass("card-text current-temp")
-      .text("Temperature: " + tempF + " °F");
-    const humidity = $("<p>")
-      .addClass("card-text current-humidity")
-      .text("Humidity: " + response.main.humidity + "%");
-    const wind = $("<p>")
-      .addClass("card-text current-wind")
-      .text("Wind Speed: " + response.wind.speed + " MPH");
-    const image = $("<img>").attr(
-      "src",
-      "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
+        const card = $("<div>").addClass("card");
+        const cardBody = $("<div>").addClass("card-body pb-0 pl-2");
+        const city = $("<h4>").addClass("card-title").text(response.name);
+        const cityDate = $("<h6>")
+          .addClass("card-title")
+          .text(date.toLocaleDateString("en-US"));
+        const temperature = $("<p>")
+          .addClass("card-text current-temp")
+          .text("Temperature: " + tempF + " °F");
+        const humidity = $("<p>")
+          .addClass("card-text current-humidity")
+          .text("Humidity: " + response.main.humidity + "%");
+        const wind = $("<p>")
+          .addClass("card-text current-wind")
+          .text("Wind Speed: " + response.wind.speed + " MPH");
+        const image = $("<img>").attr(
+          "src",
+          "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
     );
-    const UVIndextxt = $("<p>")
-      .addClass("card-text font-weight-light small")
-      .text("UV Index: 0-4 low(green), 4-7 moderate(yellow), 8-11 high(red)");
+        const UVIndextxt = $("<p>")
+          .addClass("card-text font-weight-light small")
+          .text("UV Index: 0-4 low(green), 4-7 moderate(yellow), 8-11 high(red)");
 
-    // add to page
+  // add to page
     city.append(cityDate, image);
     cardBody.append(city, temperature, humidity, wind, UVIndextxt);
     card.append(cardBody);
     $("#current-city-weather").append(card);
-
-    //   * UV index
-    // Pulling lon, lat info to uvIndex
     uvIndex(lon, lat);
 
-    function uvIndex(lon, lat) {
-      // SEARCHES
+  function uvIndex(lon, lat) {
       var UVQuery =
         "https://api.openweathermap.org/data/2.5/uvi?" + token + "&lat=" + lat + "&lon=" + lon;
-
       $.ajax({
         url: UVQuery,
         method: "GET",
@@ -146,7 +133,7 @@ $("#search-button").on("click", function () {
       method: "GET",
     }).then(function(response){
       $("#five-day-forecast").empty();
-
+      $("#five-day-forecast-title").addClass("mt-3 mb-3 ml-2 fw-bold text-decoration-underline").text("5 Day Outlook:");
       let results = response.list;
       console.log(response.list);
 

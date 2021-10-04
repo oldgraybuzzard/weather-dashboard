@@ -29,7 +29,15 @@ h3, label, .btn {
     color: var(--secondary-text-color);
     font-size: 18px;
 }
+h3 {
+    font-weight: bold;
+}
 .list-item, .enter-city{
     font-size: 20px;
-
+}
+h6 {
+    font-weight: bold;
+}
+#clear-history {
+    color: var(--primary-text-color);
 }

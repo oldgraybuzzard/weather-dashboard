@@ -14,8 +14,9 @@
     <title>One Day Weather</title>
 </head>
 <body>
-    <header class="container-fluid text-center text-white bg-dark p-2">
+    <header class="container-fluid text-center text-white p-2">
         <h1>Weather Dashboard</h1>
+        <p>Your current date and time is:</p>
         <p id="currentDay"></p>
         <p id="currentTime"></p>
         <p>Use the search box below to search for the current weather status is the city of your choice.</p>
@@ -24,7 +25,7 @@
 <div class="container-fluid">
     <div class="d-flex">
         <div class="col-lg-3 bg-light">
-            <h5 class="mt-1">Search for a City:</h5>
+            <h5 class="mt-1 fw-bold">Search for a City:</h5>
         <div class="input-group mb-4">
             <input id="enter-city" type="text" class="form-control" placeholder="Enter a city" aria-label="Enter a city">
                 <div class="input-group-append">
@@ -33,31 +34,32 @@
                     </button>
                 </div>
         </div>
-    <div>
-                
         <button class="btn btn-primary mb-3" type="button" id="clear-history">Clear history</button>
-                <div id="city-history" class="card d-flex">
-                    <h3>History</h3>
-                    <ul id="cityList" class="list-group list-group-flush list"></ul>
-                </div>
-                <form id="history"></form>
+        <div>
+            <div id="city-history" class="card d-flex">
+                <h3>History</h3>
+                <ul id="list-of-cities" class="list-group list-group-flush list"></ul>
             </div>
+                <form id="history"></form>
         </div>
+    </div>
     <!-- Current Weather -->
-        <div class="d-flex">
-            <div class="col-sm-12">
+    <div class="d-flex">
+        <div class="col-sm-12">
                 <div id="current-city-weather"></div>
             </div>
         </div>
     </div>
 </div>
+        
+
 
 
 <!-- Forecast container -->
     <div class="mt-4 col-md-12">
-        <h5 id="forecastH5"></h5>
-
-    <div id="five-day-forecast" class="row mb-6"></div>
+        <h5 id="five-day-forecast-title"></h5>
+        <div id="five-day-forecast" class="row mb-6"></div>
+    </div>
 </div>
 
 
