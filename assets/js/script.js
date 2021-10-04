@@ -2,16 +2,14 @@
 $("#currentDay").text(dayjs().format("dddd, MMMM D YYYY"));
 $("#currentTime").text(dayjs().format('HH:mm'));
 
-let city;
+let city = document.getElementById("enter-city");
 let date = new Date();
 
 // Variables Section
 var token = "&appid=" + config.apiToken;
 
-
-
-$("#enter-city").keypress(function (event) {
-  // enter key
+$("#enter-city").keypress(function(event) {
+  // can press the enter key
   if (event.keyCode === 13) {
     event.preventDefault();
     $("#search-button").click();
@@ -34,13 +32,13 @@ function listCities() {
   });
 }
 // localStorage
-function makeList() {
+function listOfCities() {
   var cities = JSON.parse(localStorage.getItem("cities")) || [];
   if (cities.indexOf(city) === -1) {
     cities.push(city);
     console.log(cities);
   }
-  localStorage.setItem("cities", JSON.stringify(cities));
+  localStorage.setItem("city list", JSON.stringify(cities));
   listCities();
 }
 
@@ -67,7 +65,7 @@ $("#search-button").on("click", function () {
   }).then(function (response) {
     getCurrentConditions(response);
     getCurrentForecast(response);
-    makeList();
+    listOfCities();
   });
 
   function getCurrentConditions(response) {
@@ -123,7 +121,6 @@ $("#search-button").on("click", function () {
         method: "GET",
       }).then(function (response) {
         const uvFinal = response.value;
-        // then append button with uvFinal printed to it
         $("#current-city-weather").append(card);
         const UVbadge = $("<div>")
           .addClass("badge mt-auto")
@@ -131,16 +128,12 @@ $("#search-button").on("click", function () {
         $("#current-city-weather").append(UVbadge);
         // then style uvFinal button with below
         if (uvFinal < 4) {
-          // if 0-4 green bagde
           UVbadge.addClass("badge-pill badge-success");
         } else if (uvFinal < 8) {
-          // if 4-7 yellow bagde
           UVbadge.addClass("badge-pill badge-warning");
         } else if (uvFinal < 12) {
-          // if 8-11 red badge
           UVbadge.addClass("badge-pill badge-danger");
         } else {
-          // if 12+ dark badge
           UVbadge.addClass("badge-pill badge-dark");
         }
       });
@@ -149,21 +142,20 @@ $("#search-button").on("click", function () {
 
   function getCurrentForecast() {
     $.ajax({
-      url:
-        "https://api.openweathermap.org/data/2.5/forecast?q=" + city + token,
+      url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + token,
       method: "GET",
-    }).then(function (response) {
+    }).then(function(response){
       $("#five-day-forecast").empty();
-      $("#forecastH5").addClass("mt-3 mb-3 ml-2").text("5 Day Forecast:");
-      // variable to hold response.list
+
       let results = response.list;
+      console.log(response.list);
 
       for (let i = 0; i < results.length; i++) {
         let day = Number(results[i].dt_txt.split("-")[2].split(" ")[0]);
         let hour = results[i].dt_txt.split("-")[2].split(" ")[1];
 
         if (results[i].dt_txt.indexOf("12:00:00") !== -1) {
-          // get the temperature and convert to fahrenheit
+      
           let temp = (results[i].main.temp - 273.15) * 1.8 + 32;
           let tempF = Math.floor(temp);
           const card = $("<div>").addClass(
@@ -172,7 +164,7 @@ $("#search-button").on("click", function () {
           const cardBody = $("<div>").addClass("card-body p-3 forecastBody");
           const cityDate = $("<h6>")
             .addClass("card-title")
-            .text(moment(results[i].dt_txt).format("MM/DD/YYYY"));
+            .text(dayjs(results[i].dt_txt).format("MM/DD/YYYY"));
           const temperature = $("<p>")
             .addClass("card-text forecastTemp")
             .text("Temperature: " + tempF + " °F");
