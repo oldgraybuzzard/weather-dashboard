@@ -8,7 +8,12 @@ let date = new Date();
 // Variables Section
 var token = "&appid=" + config.apiToken;
 
-
+$("#enter-city").keypress(function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    $("#search-button").click();
+  }
+});
 
 // display search history
 searchHistory();
@@ -45,12 +50,7 @@ $("#search-button").on("click", function () {
     city = $("#enter-city").val().trim();
       $("#enter-city").val("");
       
-$("#enter-city").keypress(function(event) {
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    $("#search-button").click();
-  }
-});
+
 
   // full url to call api
   const queryUrl =
